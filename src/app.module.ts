@@ -15,6 +15,7 @@ import { Choice } from './questions/entities/choice.entity';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entities';
 import { Profile } from './users/entities/profile.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { Profile } from './users/entities/profile.entity';
     SubtopicsModule,
     QuestionsModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
