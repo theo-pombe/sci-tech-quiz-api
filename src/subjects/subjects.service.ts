@@ -55,11 +55,7 @@ export class SubjectsService {
   }
 
   async remove(slug: string): Promise<void> {
-    const subject = await this.subjectRepo.findOneBy({ slug });
-
-    if (!subject)
-      throw new NotFoundException(`Subject with slug "${slug}" not found`);
-
+    const subject = await this.findOneBySlug(slug);
     await this.subjectRepo.remove(subject);
   }
 }

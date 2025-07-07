@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Topic } from 'src/topics/entities/topic.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  Index,
+} from 'typeorm';
 
 export enum SubjectLevel {
   O_LEVEL = 'o-level',
@@ -13,12 +20,19 @@ export class Subject {
   @Column({ length: 100 })
   name: string;
 
-  @Column({ length: 5 })
+  @Column({ nullable: true })
+  description: string;
+
+  @Column({ length: 5, unique: true })
   code: string;
 
   @Column({ unique: true, length: 100 })
+  @Index('IDX_SUBJECT_CODE')
   slug: string;
 
   @Column({ type: 'enum', enum: SubjectLevel })
-  level: string; // e.g., 'o-level', 'a-level'
+  level: SubjectLevel;
+
+  @OneToMany(() => Topic, (topic) => topic.subject)
+  topics: Topic[];
 }
