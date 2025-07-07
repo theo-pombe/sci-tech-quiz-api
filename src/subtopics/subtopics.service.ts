@@ -41,7 +41,7 @@ export class SubtopicsService {
     return subtopic;
   }
 
-  async findOneById(id: number): Promise<Subtopic> {
+  async findOneById(id: string): Promise<Subtopic> {
     const subtopic = await this.subtopicsRepo.findOneBy({ id });
     if (!subtopic)
       throw new NotFoundException(`Subtopic with id "${id}" not found`);

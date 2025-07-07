@@ -11,8 +11,8 @@ import {
 
 @Entity()
 export class Topic {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @ManyToOne(() => Subject, (subject) => subject.topics, {
     onDelete: 'CASCADE',

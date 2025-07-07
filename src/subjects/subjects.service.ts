@@ -35,7 +35,7 @@ export class SubjectsService {
     return subject;
   }
 
-  async findOneById(id: number): Promise<Subject> {
+  async findOneById(id: string): Promise<Subject> {
     const subject = await this.subjectRepo.findOneBy({ id });
     if (!subject)
       throw new NotFoundException(`Subject with id "${id}" not found`);

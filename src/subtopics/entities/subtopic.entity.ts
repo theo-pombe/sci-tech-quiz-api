@@ -1,16 +1,18 @@
+import { Question } from 'src/questions/entities/question.entity';
 import { Topic } from 'src/topics/entities/topic.entity';
 import {
   Column,
   Entity,
   Index,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity()
 export class Subtopic {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @ManyToOne(() => Topic, (topic) => topic.subtopics, {
     onDelete: 'CASCADE',
@@ -27,4 +29,7 @@ export class Subtopic {
   @Column({ unique: true, length: 100 })
   @Index('IDX_SUBTOPIC_CODE')
   slug: string;
+
+  @OneToMany(() => Question, (question) => question.subtopic)
+  questions: Question[];
 }

@@ -2,14 +2,15 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
-  IsNumber,
+  IsUUID,
   MaxLength,
 } from 'class-validator';
 
 export class CreateSubtopicDto {
   @IsNotEmpty()
-  @IsNumber()
-  topicId: number;
+  @IsString()
+  @IsUUID()
+  topicId: string;
 
   @IsNotEmpty()
   @IsString()

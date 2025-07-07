@@ -2,14 +2,15 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
-  IsNumber,
+  IsUUID,
   MaxLength,
 } from 'class-validator';
 
 export class CreateTopicDto {
   @IsNotEmpty()
-  @IsNumber()
-  subjectId: number;
+  @IsString()
+  @IsUUID()
+  subjectId: string;
 
   @IsNotEmpty()
   @IsString()
