@@ -5,6 +5,8 @@ import { SubjectsModule } from './subjects/subjects.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Subject } from './subjects/entities/subject.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TopicsModule } from './topics/topics.module';
+import { Topic } from './topics/entities/topic.entity';
 
 @Module({
   imports: [
@@ -21,12 +23,13 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
-        entities: [Subject],
+        entities: [Subject, Topic],
         // entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true, // TODO: Turn off in production
       }),
     }),
     SubjectsModule,
+    TopicsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
