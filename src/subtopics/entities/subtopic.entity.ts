@@ -1,24 +1,22 @@
-import { Subject } from 'src/subjects/entities/subject.entity';
-import { Subtopic } from 'src/subtopics/entities/subtopic.entity';
+import { Topic } from 'src/topics/entities/topic.entity';
 import {
   Column,
   Entity,
   Index,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity()
-export class Topic {
+export class Subtopic {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Subject, (subject) => subject.topics, {
+  @ManyToOne(() => Topic, (topic) => topic.subtopics, {
     onDelete: 'CASCADE',
     nullable: false,
   })
-  subject: Subject;
+  topic: Topic;
 
   @Column({ length: 100 })
   name: string;
@@ -27,9 +25,6 @@ export class Topic {
   description: string;
 
   @Column({ unique: true, length: 100 })
-  @Index('IDX_TOPIC_CODE')
+  @Index('IDX_SUBTOPIC_CODE')
   slug: string;
-
-  @OneToMany(() => Subtopic, (subtopic) => subtopic.topic)
-  subtopics: Topic[];
 }

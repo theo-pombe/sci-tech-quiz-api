@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TopicsModule } from './topics/topics.module';
 import { Topic } from './topics/entities/topic.entity';
 import { SubtopicsModule } from './subtopics/subtopics.module';
+import { Subtopic } from './subtopics/entities/subtopic.entity';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { SubtopicsModule } from './subtopics/subtopics.module';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
-        entities: [Subject, Topic],
+        entities: [Subject, Topic, Subtopic],
         // entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true, // TODO: Turn off in production
       }),

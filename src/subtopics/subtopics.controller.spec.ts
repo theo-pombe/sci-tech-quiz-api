@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SubtopicsController } from './subtopics.controller';
+import { SubtopicsController } from './admin-subtopics.controller';
 import { SubtopicsService } from './subtopics.service';
 
 describe('SubtopicsController', () => {
