@@ -28,16 +28,22 @@ export class SubjectsService {
     return await this.subjectRepo.find();
   }
 
-  async findOne(slug: string): Promise<Subject> {
+  async findOneBySlug(slug: string): Promise<Subject> {
     const subject = await this.subjectRepo.findOneBy({ slug });
-    if (!subject) {
+    if (!subject)
       throw new NotFoundException(`Subject with slug "${slug}" not found`);
-    }
+    return subject;
+  }
+
+  async findOneById(id: number): Promise<Subject> {
+    const subject = await this.subjectRepo.findOneBy({ id });
+    if (!subject)
+      throw new NotFoundException(`Subject with id "${id}" not found`);
     return subject;
   }
 
   async update(slug: string, dto: UpdateSubjectDto): Promise<Subject> {
-    const subject = await this.findOne(slug);
+    const subject = await this.findOneBySlug(slug);
 
     // Only regenerate slug if name has changed
     if (dto.name && dto.name !== subject.name)
@@ -51,9 +57,8 @@ export class SubjectsService {
   async remove(slug: string): Promise<void> {
     const subject = await this.subjectRepo.findOneBy({ slug });
 
-    if (!subject) {
+    if (!subject)
       throw new NotFoundException(`Subject with slug "${slug}" not found`);
-    }
 
     await this.subjectRepo.remove(subject);
   }

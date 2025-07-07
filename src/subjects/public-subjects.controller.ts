@@ -13,6 +13,6 @@ export class PublicSubjectsController {
 
   @Get(':slug')
   async findOne(@Param('slug') slug: string): Promise<Subject> {
-    return this.subjectsService.findOne(slug);
+    return this.subjectsService.findOneBySlug(slug);
   }
 }
