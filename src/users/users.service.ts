@@ -6,29 +6,19 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entities';
 import { Repository } from 'typeorm';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
   constructor(@InjectRepository(User) private repo: Repository<User>) {}
 
-  async create(userData: User): Promise<User> {
-    const existing = await this.findByPhone(userData.phoneNumber);
-    if (existing)
-      throw new ConflictException(
-        `User with phone number ${userData.phoneNumber} already exists`,
-      );
-
-    const user = this.repo.create(userData);
-
+  async create(dto: CreateUserDto): Promise<User> {
+    const user = this.repo.create(dto);
     return this.repo.save(user);
   }
 
-  async findByPhone(phone: string): Promise<User> {
-    const user = await this.repo.findOne({ where: { phoneNumber: phone } });
-    if (!user)
-      throw new NotFoundException(`User with phone number ${phone} not found`);
-
-    return user;
+  async findByPhone(phone: string): Promise<User | null> {
+    return await this.repo.findOne({ where: { phoneNumber: phone } });
   }
 
   async findById(id: number): Promise<User> {

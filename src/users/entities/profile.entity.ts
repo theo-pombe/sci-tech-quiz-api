@@ -7,6 +7,11 @@ export enum UserRole {
   ADMIN = 'admin',
 }
 
+export enum EducationLevel {
+  OLEVEL = 'o-level',
+  ALEVEL = 'a-level',
+}
+
 @Entity()
 export class Profile {
   @PrimaryGeneratedColumn()
@@ -31,6 +36,10 @@ export class Profile {
   @Column({ nullable: true })
   district?: string;
 
-  @Column({ nullable: true })
-  levelOfEducation?: string;
+  @Column({
+    type: 'enum',
+    enum: EducationLevel,
+    default: EducationLevel.OLEVEL,
+  })
+  levelOfEducation: EducationLevel;
 }
