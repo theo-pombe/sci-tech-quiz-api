@@ -10,6 +10,8 @@ import { Topic } from './topics/entities/topic.entity';
 import { SubtopicsModule } from './subtopics/subtopics.module';
 import { Subtopic } from './subtopics/entities/subtopic.entity';
 import { QuestionsModule } from './questions/questions.module';
+import { Question } from './questions/entities/question.entity';
+import { Choice } from './questions/entities/choice.entity';
 
 @Module({
   imports: [
@@ -26,7 +28,7 @@ import { QuestionsModule } from './questions/questions.module';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
-        entities: [Subject, Topic, Subtopic],
+        entities: [Subject, Topic, Subtopic, Question, Choice],
         // entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true, // TODO: Turn off in production
       }),
