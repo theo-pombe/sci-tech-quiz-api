@@ -1,4 +1,5 @@
 import { Topic } from 'src/topics/entities/topic.entity';
+import { EducationLevel } from 'src/users/entities/profile.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,11 +7,6 @@ import {
   OneToMany,
   Index,
 } from 'typeorm';
-
-export enum SubjectLevel {
-  O_LEVEL = 'o-level',
-  A_LEVEL = 'a-level',
-}
 
 @Entity()
 export class Subject {
@@ -30,8 +26,12 @@ export class Subject {
   @Index('IDX_SUBJECT_CODE')
   slug: string;
 
-  @Column({ type: 'enum', enum: SubjectLevel })
-  level: SubjectLevel;
+  @Column({
+    type: 'enum',
+    enum: EducationLevel,
+    default: EducationLevel.OLEVEL,
+  })
+  level: EducationLevel;
 
   @OneToMany(() => Topic, (topic) => topic.subject)
   topics: Topic[];
