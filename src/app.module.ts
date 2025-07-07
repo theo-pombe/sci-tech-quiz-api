@@ -12,6 +12,7 @@ import { Subtopic } from './subtopics/entities/subtopic.entity';
 import { QuestionsModule } from './questions/questions.module';
 import { Question } from './questions/entities/question.entity';
 import { Choice } from './questions/entities/choice.entity';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { Choice } from './questions/entities/choice.entity';
     TopicsModule,
     SubtopicsModule,
     QuestionsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
