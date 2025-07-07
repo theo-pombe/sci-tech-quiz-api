@@ -7,6 +7,7 @@ import { Subject } from './subjects/entities/subject.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TopicsModule } from './topics/topics.module';
 import { Topic } from './topics/entities/topic.entity';
+import { SubtopicsModule } from './subtopics/subtopics.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { Topic } from './topics/entities/topic.entity';
     }),
     SubjectsModule,
     TopicsModule,
+    SubtopicsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
