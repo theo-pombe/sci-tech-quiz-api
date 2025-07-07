@@ -9,6 +9,7 @@ import { TopicsModule } from './topics/topics.module';
 import { Topic } from './topics/entities/topic.entity';
 import { SubtopicsModule } from './subtopics/subtopics.module';
 import { Subtopic } from './subtopics/entities/subtopic.entity';
+import { QuestionsModule } from './questions/questions.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { Subtopic } from './subtopics/entities/subtopic.entity';
     SubjectsModule,
     TopicsModule,
     SubtopicsModule,
+    QuestionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
