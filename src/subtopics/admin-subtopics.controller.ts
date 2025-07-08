@@ -1,9 +1,19 @@
-import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { SubtopicsService } from './subtopics.service';
 import { CreateSubtopicDto } from './dto/create-subtopic.dto';
 import { Subtopic } from './entities/subtopic.entity';
 import { UpdateSubtopicDto } from './dto/update-subtopic.dto';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('admin/subtopics')
 export class AdminSubtopicsController {
   constructor(private readonly subtopicsService: SubtopicsService) {}

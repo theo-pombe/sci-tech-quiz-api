@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsString, Length } from 'class-validator';
-import { SubjectLevel } from '../entities/subject.entity';
+import { EducationLevel } from 'src/users/entities/profile.entity';
 
 export class CreateSubjectDto {
   @IsString()
@@ -12,8 +12,8 @@ export class CreateSubjectDto {
   @Length(2, 10)
   code: string;
 
-  @IsEnum(SubjectLevel, {
+  @IsEnum(EducationLevel, {
     message: 'Level must be either o-level or a-level',
   })
-  level: SubjectLevel;
+  level: EducationLevel;
 }

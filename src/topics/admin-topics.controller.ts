@@ -1,9 +1,19 @@
-import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { TopicsService } from './topics.service';
 import { UpdateTopicDto } from './dto/update-topic.dto';
 import { CreateTopicDto } from './dto/create-topic.dto';
 import { Topic } from './entities/topic.entity';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('admin/topics')
 export class AdminTopicsController {
   constructor(private readonly topicsService: TopicsService) {}
